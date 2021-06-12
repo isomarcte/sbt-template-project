@@ -1,3 +1,5 @@
+import scala.collection.immutable.SortedSet
+
 // Constants //
 
 lazy val scala211V: String = "2.11.12"
