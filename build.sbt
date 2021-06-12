@@ -16,7 +16,7 @@ lazy val projectOrg: String = "<PROJECT_ORG>"
 // Usually run before making a PR
 addCommandAlias(
   "full_build",
-  s";+clean;githubWorkflowGenerate;+test;+test:doc;docs/mdoc;+versionSchemeEnforcerCheck;++${scala213};scalafmtAll;scalafmtSbt;scalafixAll"
+  s";+clean;githubWorkflowGenerate;+test;+test:doc;docs/mdoc;+versionSchemeEnforcerCheck;++${scala213V};scalafmtAll;scalafmtSbt;scalafixAll"
 )
 
 // ThisBuild //
