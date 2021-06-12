@@ -22,7 +22,7 @@ addCommandAlias(
 // ThisBuild //
 
 // POM
-ThisBuild / organization := isomarcteOrg
+ThisBuild / organization := projectOrg
 ThisBuild / versionScheme := Some("pvp")
 
 // Scala
