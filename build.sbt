@@ -7,14 +7,35 @@ lazy val scala30V: String  = "3.0.0"
 lazy val scalaVersions: SortedSet[String] = SortedSet(scala211V, scala212V, scala213V, scala30V)
 lazy val projectOrg: String = "<PROJECT_ORG>"
 
+// SBT Command Aliases //
+// Usually run before making a PR
+addCommandAlias(
+  "full_build",
+  s";+clean;githubWorkflowGenerate;+test;+test:doc;docs/mdoc;+versionSchemeEnforcerCheck;++${scala213};scalafmtAll;scalafmtSbt;scalafixAll"
+)
+
 // ThisBuild //
 
 // POM
+ThisBuild / organization := isomarcteOrg
+ThisBuild / versionScheme := Some("pvp")
 
 // Scala
+ThisBuild / scalaVersion := scala213V
+ThisBuild / crossScalaVersions := scalaVersions.toSeq
 
 // Scalafix
+ThisBuild / scalafixScalaBinaryVersion := scalaBinaryVersion.value
+ThisBuild / semanticdbEnabled := true
+ThisBuild / semanticdbVersion := scalafixSemanticdb.revision
 
 // Projects //
+def projectModule(name: String): Project = {
+  Project(name, file(s"modules/$name"))
+}
 
 // Root
+
+lazy val root: Project = (project in file(".")).settings(
+  name := s"${projectName}-root"
+)

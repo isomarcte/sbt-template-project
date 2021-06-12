@@ -27,6 +27,7 @@ function sanity_check {
 function main {
     sanity_check "$@"
     ./setup-git.sh "$@"
+    ./setup-template.sh "$@"
 }
 
 main "$@"

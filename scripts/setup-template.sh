@@ -12,7 +12,7 @@ function set_project_org {
 
     readonly PROJECT_ORG
 
-    sed -i "s/<PROJECT_ORG>/${PROJECT_ORG}" ./build.sbt
+    sed -i "s/<PROJECT_ORG>/${PROJECT_ORG}/" ./build.sbt
 }
 
 function main {
