@@ -28,6 +28,10 @@ function main {
     sanity_check "$@"
     ./setup-git.sh "$@"
     ./setup-template.sh "$@"
+
+    pushd "${TARGET_DIR:?}"
+    sbt ';+test:compile;+test:clean'
+    popd
 }
 
 main "$@"

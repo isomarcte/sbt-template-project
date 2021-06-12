@@ -5,6 +5,9 @@ lazy val scala212V: String = "2.12.14"
 lazy val scala213V: String = "2.13.6"
 lazy val scala30V: String  = "3.0.0"
 lazy val scalaVersions: SortedSet[String] = SortedSet(scala211V, scala212V, scala213V, scala30V)
+
+// Project
+lazy val projectName: String = "<PROJECT_NAME>"
 lazy val projectOrg: String = "<PROJECT_ORG>"
 
 // SBT Command Aliases //
