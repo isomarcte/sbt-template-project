@@ -30,9 +30,10 @@ function cleanup_on_success {
 
     if [ "${SHOULD_DELETE}" = 'no' ]
     then
-        echo "Leaving directory ${TEMP_DIR:?} alone because SHOULD_DELETE was ${SHOULD_DELETE:?}"
+        echo "Leaving directory ${TEMP_DIR:?} alone because SHOULD_DELETE was ${SHOULD_DELETE:?}."
         return 0
     else
+        echo "Deleting test directory ${TEMP_DIR:?}."
         rm -rf "${TEMP_DIR:?}"
     fi
 }
