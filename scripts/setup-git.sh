@@ -12,6 +12,7 @@ function setup_scm_url {
 
 function ungit {
     rm -rf .git
+    rm -rf scripts/
 }
 
 function main {
