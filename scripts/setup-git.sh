@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -ex
 
 function setup_scm_url {
     if [ -z "${SCM_URL}" ]
@@ -10,24 +10,33 @@ function setup_scm_url {
 
 }
 
-function ungit {
-    rm -rf .git
-    rm -rf scripts/
-}
-
 function main {
     setup_scm_url
 
-    git clone -- "${SCM_URL:?}" "${TARGET_DIR:?}"
+    declare TEMP_CLONE
+    TEMP_CLONE="$(mktemp -d)"
+    readonly TEMP_CLONE
+    trap 'rm -rf ${TEMP_CLONE}' ERR
+    pushd "$TEMP_CLONE"
 
-    pushd "${TARGET_DIR:?}"
+    git clone -- "${SCM_URL:?}" temp
+
+    pushd temp
 
     if [ -n "$REF_NAME" ]
     then
         git checkout "${REF_NAME}"
     fi
 
-    ungit
+    popd
+
+    popd
+
+    mv -v "${TEMP_CLONE:?}/temp/template" "${TARGET_DIR:?}"
+
+    rm -r "${TEMP_CLONE:?}"
+
+    pushd "${TARGET_DIR:?}"
 
     popd
 }
