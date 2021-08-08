@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -ex
+set -e
 
 function setup_scm_url {
     if [ -z "${SCM_URL}" ]
@@ -34,9 +34,11 @@ function main {
 
     mv -v "${TEMP_CLONE:?}/temp/template" "${TARGET_DIR:?}"
 
-    rm -r "${TEMP_CLONE:?}"
+    rm -rf "${TEMP_CLONE:?}"
 
     pushd "${TARGET_DIR:?}"
+
+    git init
 
     popd
 }
