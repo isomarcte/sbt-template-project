@@ -1,17 +1,12 @@
 #!/usr/bin/env bash
 
-set -e
+set -ex
 
-function setup_scm_url {
+function main {
     if [ -z "${SCM_URL}" ]
     then
         declare -xr SCM_URL='https://github.com/isomarcte/sbt-template-project.git'
     fi
-
-}
-
-function main {
-    setup_scm_url
 
     declare TEMP_CLONE
     TEMP_CLONE="$(mktemp -d)"
